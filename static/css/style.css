@@ -1,0 +1,536 @@
+/* === RESET & BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    color: #1e2a3e;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+:root {
+    --primary: #0a5c8e;
+    --primary-dark: #064663;
+    --secondary: #f39c12;
+    --light-bg: #f8fafc;
+    --gray-light: #eef2f6;
+    --text-dark: #0f172a;
+    --text-muted: #475569;
+}
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* === BOTÕES === */
+.btn-primary-custom {
+    background-color: var(--primary);
+    border: none;
+    padding: 10px 28px;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    color: white;
+}
+.btn-primary-custom:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(6,70,99,0.2);
+}
+.btn-outline-custom {
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    padding: 10px 28px;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: 0.3s;
+}
+.btn-outline-custom:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+.btn-matricula {
+    background: var(--secondary);
+    color: #1e2a3e;
+    font-weight: 700;
+    border-radius: 40px;
+    padding: 8px 24px;
+    transition: 0.2s;
+}
+.btn-matricula:hover {
+    background: #e67e22;
+    color: white;
+    transform: scale(1.02);
+}
+
+/* === HEADER === */
+.navbar {
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    padding: 0.8rem 0;
+}
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--primary-dark);
+}
+.navbar-brand i {
+    color: var(--secondary);
+    margin-right: 6px;
+}
+.navbar-brand .fw-light {
+    font-size: 1rem;
+}
+.nav-link {
+    font-weight: 600;
+    color: #1e2a3e;
+    margin: 0 6px;
+    transition: 0.2s;
+}
+.nav-link:hover {
+    color: var(--primary);
+}
+
+/* === HERO === */
+.hero {
+    background: linear-gradient(135deg, #f1f9ff 0%, #e6f0f8 100%);
+    padding: 100px 0 80px;
+    position: relative;
+}
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+.hero h4 {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+.price-badge {
+    background: #ffffff;
+    border-left: 5px solid var(--secondary);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    padding: 10px 20px;
+    border-radius: 60px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+.price-badge i {
+    color: var(--secondary);
+    font-size: 1.4rem;
+}
+
+/*=== HERO  ===*/
+
+.hero {
+    min-height: 100vh;          /* altura total da viewport */
+    background: transparent;    /* sem fundo sólido */
+}
+
+/* Garante que as imagens do carrossel cubram todo o espaço */
+.object-fit-cover {
+    object-fit: cover;
+}
+
+/* Ajusta o carrossel para ocupar 100% da altura */
+.carousel,
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+
+/* Estilo dos botões e indicadores (opcional, para melhor visibilidade) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.carousel-indicators .active {
+    background-color: #ffc107; /* amarelo destaque */
+}
+
+/* Ajuste para os botões de ação (se quiser manter o estilo original) */
+.btn-primary-custom {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-primary-custom:hover {
+    background-color: #e0a800;
+    color: #000;
+    transform: scale(1.03);
+}
+
+.btn-outline-custom {
+    border: 2px solid white;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-outline-custom:hover {
+    background-color: white;
+    color: #000;
+}
+
+
+
+/* === ESTATÍSTICAS === */
+.stat-card {
+    background: white;
+    border-radius: 28px;
+    padding: 1.8rem 1rem;
+    box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+/* === TÍTULOS DE SECÇÃO === */
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 4px;
+}
+
+/* === CARDS DE CURSOS === */
+.course-card {
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    background: white;
+    height: 100%;
+}
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 36px -12px rgba(0,0,0,0.15);
+}
+.course-card .card-body {
+    padding: 1.5rem;
+}
+.course-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.course-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+.course-card .btn-sm {
+    border-radius: 30px;
+    padding: 0.3rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+.course-icon {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+/* === INFRAESTRUTURAS === */
+.infra-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* === DEPOIMENTOS === */
+.testimonial-card {
+    background: white;
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eef2f6;
+}
+
+/* === PARCEIROS === */
+.partner-logo {
+    background: white;
+    border-radius: 60px;
+    padding: 1rem;
+    text-align: center;
+    filter: grayscale(0.1);
+    transition: 0.2s;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2c3e66;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+.partner-logo:hover {
+    filter: grayscale(0);
+    transform: scale(1.02);
+}
+
+/* === CTA BANNER === */
+.cta-banner {
+    background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+    border-radius: 40px;
+    padding: 3rem 2rem;
+    color: white;
+}
+
+/* === CONTACTOS === */
+.contact-icon {
+    width: 42px;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+.map-placeholder {
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 220px;
+    width: 100%;
+}
+
+/* === FOOTER === */
+footer {
+    background: #0a1c2a;
+    color: #cbd5e1;
+}
+.social-icon {
+    font-size: 1.4rem;
+    margin-right: 18px;
+    color: #cbd5e1;
+    transition: 0.2s;
+}
+.social-icon:hover {
+    color: var(--secondary);
+}
+
+/* === CARROSSEL (HERO) === */
+.hero-carousel-img {
+    height: 340px;
+    object-fit: cover;
+}
+
+/* === BOTÃO VOLTAR AO TOPO === */
+  #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--secondary);
+      color: #1e2a3e;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 1.6rem;
+      display: none; /* oculto por padrão */
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 999;
+      cursor: pointer;
+  }
+  #back-to-top:hover {
+      background-color: #e67e22;
+      transform: scale(1.1);
+      color: white;
+  }
+  #back-to-top.show {
+      display: flex;
+  }
+
+
+/* ============================================================ */
+/*             MEDIA QUERIES PARA RESPONSIVIDADE EXTRA            */
+/* ============================================================ */
+
+@media (max-width: 991px) {
+    .hero {
+        padding: 60px 0 50px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero h4 {
+        font-size: 1.2rem;
+    }
+    .hero-carousel-img {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero h4 {
+        font-size: 1rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    .course-card h4 {
+        font-size: 1rem;
+    }
+    .course-card .card-body {
+        padding: 1.2rem;
+    }
+    .cta-banner {
+        padding: 2rem 1.5rem;
+    }
+    .cta-banner h2 {
+        font-size: 1.8rem !important;
+    }
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    .navbar-brand .fw-light {
+        font-size: 0.75rem;
+    }
+    .btn-matricula {
+        padding: 6px 16px;
+        font-size: 0.9rem;
+    }
+    .partner-logo {
+        height: 80px;
+        font-size: 1rem;
+    }
+    .hero-carousel-img {
+        height: 220px;
+    }
+    .price-badge {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 40px 0 30px;
+    }
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+    .hero h4 {
+        font-size: 0.95rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .stat-card {
+        padding: 1.2rem 0.5rem;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    .course-card .card-body {
+        padding: 1rem;
+    }
+    .course-card h4 {
+        font-size: 0.9rem;
+    }
+    .course-card p {
+        font-size: 0.8rem;
+    }
+    .course-icon {
+        font-size: 1.4rem;
+    }
+    .btn-primary-custom, .btn-outline-custom {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    .cta-banner {
+        padding: 1.5rem 1rem;
+    }
+    .cta-banner h2 {
+        font-size: 1.5rem !important;
+    }
+    .cta-banner .btn-lg {
+        font-size: 1rem;
+        padding: 10px 24px;
+    }
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    .testimonial-card .fs-5 {
+        font-size: 1rem !important;
+    }
+    .partner-logo {
+        height: 70px;
+        font-size: 0.8rem;
+    }
+    footer .row > div {
+        text-align: center;
+    }
+    footer .social-icon {
+        margin: 0 12px;
+    }
+    .map-placeholder {
+        height: 180px;
+    }
+    .hero-carousel-img {
+        height: 180px;
+    }
+    .price-badge {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+        gap: 8px;
+    }
+    .price-badge i {
+        font-size: 1rem;
+    }
+}

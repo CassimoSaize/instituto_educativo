@@ -1,0 +1,11 @@
+/* Logo da tela de login */
+.login-logo img {
+    max-width: 150px !important;
+    height: auto !important;
+}
+
+/* Opcional: logo maior */
+.login-logo img {
+    width: 200px !important;
+    height: auto !important;
+}

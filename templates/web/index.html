@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ======================== HERO (com preço e slide) ======================== -->
+    <section id="home" class="hero position-relative overflow-hidden">
+    <div id="heroCarousel" class="carousel slide carousel-fade h-100 w-100"
+         data-bs-ride="carousel" style="position: absolute; top: 0; left: 0; z-index: 0;">
+        <div class="carousel-inner h-100">
+            {% for imagem in imagens_carrossel %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %} h-100">
+                <img src="{{ imagem.imagem.url }}" class="d-block w-100 h-100 object-fit-cover" alt="{{ imagem.alt }}">
+            </div>
+            {% empty %}
+            <div class="carousel-item active h-100">
+                <img src="{% static 'img/fallback.jpg' %}" class="d-block w-100 h-100 object-fit-cover" alt="Imagem padrão">
+            </div>
+            {% endfor %}
+        </div>
+        <!-- botões e indicadores (opcionais) -->
+        {% if imagens_carrossel|length > 1 %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+        <div class="carousel-indicators">
+            {% for imagem in imagens_carrossel %}
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    {% if forloop.first %}class="active" aria-current="true"{% endif %}></button>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Overlay e conteúdo -->
+    <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+         background: rgba(0,0,0,0.5); z-index: 1;"></div>
+
+    <div class="container position-relative" style="z-index: 2; min-height: 80vh; display: flex; align-items: center;">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7 text-white">
+                <h1 class="fw-light text-white">{{ hero.titulo }}</h1>
+                <h4 class="text-white">{{ hero.subtitulo }}</h4>
+                <p class="lead text-white">{{ hero.descricao }}</p>
+                <div class="price-badge mb-3 bg-light bg-opacity-25 p-2 rounded-3 d-inline-block">
+                    <i class="fas fa-coins text-warning"></i>
+                    <span>{{ hero.rotulo_preco }}: <strong class="text-white">{{ hero.preco }} MZN</strong></span>
+                    <span class="text-light small fw-normal ms-1">({{ hero.info_parcelamento }})</span>
+                </div>
+                <div class="d-flex flex-wrap gap-3 mt-3">
+                    <a href="{{ hero.link_botao_primario }}" class="btn btn-primary-custom">
+                        <i class="fas fa-user-graduate me-2"></i>{{ hero.texto_botao_primario }}
+                    </a>
+                    <a href="{{ hero.link_botao_secundario }}" class="btn btn-outline-custom border-white text-white">
+                        <i class="fas fa-book-open me-2"></i>{{ hero.texto_botao_secundario }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ======================== ESTATÍSTICAS ======================== -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row text-center g-4">
+                {% for item in itens_estatistica %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card">
+                        <div class="fw-light stat-number">{{ item.numero }}</div>
+                        <div class="mt-2 fw-semibold">{{ item.rotulo }}</div>
+                        <small class="text-muted">{{ item.descricao }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CURSOS (19) ======================== -->
+    <section id="cursos" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">{{ secao_cursos.titulo }}</h2>
+                <p class="text-muted">{{ secao_cursos.subtitulo }}</p>
+            </div>
+            <div class="row g-4">
+                {% for curso in cursos %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="course-card">
+                        <div class="card-body">
+                            <h4><i class="fas {{ curso.icone }} course-icon"></i> {{ curso.nome }}</h4>
+                            <p>{{ curso.descricao|truncatewords:5 }}</p>
+                            <a href="{% url 'curso_detalhe' curso.id %}" class="btn btn-primary btn-sm">Saber Mais</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-5">
+                <a href="{% url 'matricula_create' %}" class="btn btn-primary-custom">
+                    {{ secao_cursos.texto_chamada }} <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SOBRE ======================== -->
+    <section id="sobre" class="py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-1 order-2">
+                    <span class="badge bg-secondary text-dark mb-3 px-3 py-2">{{ sobre.texto_distintivo }}</span>
+                    <h2 class="fw-light section-title">{{ sobre.titulo }}</h2>
+                    <p class="mt-3"><strong>Missão:</strong> {{ sobre.missao }}</p>
+                    <p><strong>Visão:</strong> {{ sobre.visao }}</p>
+                    <p><strong>Valores:</strong> {{ sobre.valores }}</p>
+                    <p class="mt-3">{{ sobre.historia }}</p>
+                </div>
+                <div class="col-lg-6 order-lg-2 order-1">
+                    <img src="{{ sobre.url_imagem }}" class="img-fluid rounded-4 shadow" alt="equipe e alunos">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== INFRAESTRUTURAS ======================== -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-light section-title">{{ secao_infra.titulo }}</h2>
+                <p>{{ secao_infra.subtitulo }}</p>
+            </div>
+            <div class="row g-4 text-center">
+                {% for item in itens_infra %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-4 bg-white rounded-4 shadow-sm h-100">
+                        <i class="fas {{ item.icone }} infra-icon"></i>
+                        <h5>{{ item.titulo }}</h5>
+                        <p class="text-muted">{{ item.descricao }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== DEPOIMENTOS ======================== -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-light section-title">{{ secao_depoimentos.titulo }}</h2>
+                <p>{{ secao_depoimentos.subtitulo }}</p>
+            </div>
+            <div class="row g-4">
+                {% for depoimento in depoimentos %}
+                <div class="col-md-6">
+                    <div class="testimonial-card h-100">
+                        <i class="fas fa-quote-left fa-2x text-secondary opacity-50 mb-3"></i>
+                        <p class="fs-5">“{{ depoimento.citacao }}”</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas {{ depoimento.icone_avatar }} fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong>{{ depoimento.autor_nome }}</strong><br>
+                                <small>{{ depoimento.autor_cargo }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== MATRÍCULAS (CTA) ======================== -->
+    <section id="matriculas" class="py-5 bg-light">
+        <div class="container">
+            <div class="cta-banner text-center">
+                <h2 class="fw-light mb-3 display-6">{{ matriculas.titulo }}</h2>
+                <p class="mb-4 fs-5">{{ matriculas.subtitulo }}</p>
+                <a href="{% url 'matricula_create' %}" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark">
+                    {{ matriculas.texto_botao }} <i class="fas fa-chevron-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CONTACTOS ======================== -->
+<section id="contactos" class="py-5 bg-white">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="fw-light section-title">Contactos</h2>
+                <div class="mt-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div><strong>Telefone:</strong> {{ contacto.telefone }}</div>
+                    </div>
+
+                    <!-- WhatsApp com link -->
+                    <a href="https://wa.me/258844717288"
+                       target="_blank"
+                       class="d-flex align-items-center mb-3 text-decoration-none text-dark">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div><strong>WhatsApp:</strong> {{ contacto.whatsapp }}</div>
+                    </a>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div><strong>Email:</strong> {{ contacto.email }}</div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><strong>Endereço:</strong> {{ contacto.endereco }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="map-placeholder shadow-sm">
+                    <iframe src="{{ contacto.url_mapa_embed }}" width="700" height="550" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p class="small text-muted mt-2 text-center">{{ contacto.referencia_mapa }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
